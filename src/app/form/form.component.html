@@ -1,0 +1,94 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="userForm">
+  <div class="mb-3">
+    <label class="form-labal" for="name">{{formLabels.name}}</label>
+    <input class="form-control" type="text" id="name" formControlName="name" placeholder="{{formPlaceholder.name}}"
+      [class]="{'is-valid':form['name'].valid,'is-invalid':form['name'].invalid && form['name'].touched}"
+      (blur)="onValueChanged()">
+    <div class="invalid-feedback">{{formErrors.name}}</div>
+    <div class="valid-feedback">{{formSuccess.name}}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-labal" for="password">{{formLabels.password}}</label>
+    <input class="form-control" type="text" id="password" formControlName="password"
+      placeholder="{{formPlaceholder.password}}"
+      [class]="{'is-valid':form['password'].valid,'is-invalid':form['password'].invalid && form['password'].touched}"
+      (blur)="onValueChanged()">
+    <div class="invalid-feedback">{{formErrors.password}}</div>
+    <div class="valid-feedback">{{formSuccess.password}}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-labal" for="email">{{formLabels.email}}</label>
+    <input class="form-control" type="text" id="email" formControlName="email" placeholder="{{formPlaceholder.email}}"
+      [class]="{'is-valid':form['email'].valid,'is-invalid':form['email'].invalid && form['email'].touched}"
+      (blur)="onValueChanged()">
+    <div class="invalid-feedback">{{formErrors.email}}</div>
+    <div class="valid-feedback">{{formSuccess.email}}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-labal" for="age">{{formLabels.age}}</label>
+    <input class="form-control" type="text" id="age" formControlName="age" placeholder="{{formPlaceholder.age}}"
+      [class]="{'is-valid':form['age'].valid,'is-invalid':form['age'].invalid && form['age'].touched}"
+      (blur)="onValueChanged()">
+    <div class="invalid-feedback">{{formErrors.age}}</div>
+    <div class="valid-feedback">{{formSuccess.age}}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-labal" for="site">{{formLabels.site}}</label>
+    <input class="form-control" type="text" id="site" formControlName="site" placeholder="{{formPlaceholder.site}}"
+      [class]="{'is-valid':form['site'].valid,'is-invalid':form['site'].invalid && (form['site'].touched || form['site'].dirty)}"
+      (blur)="onValueChanged()">
+    <div *ngIf="form['site'].pending" class="text-muted">{{validationMessages.site.pending}}</div>
+    <div class="invalid-feedback">{{formErrors.site}}</div>
+    <div *ngIf="form['site'].invalid && (form['site'].touched || form['site'].dirty)" class="valid-feedback">
+      <div *ngIf="formErrors.site">{{formErrors.site}}</div>
+      <div *ngIf="!formErrors.site.site && form['site'].errors?.['urlNotAllowed']">
+        {{validationMessages.site.urlNotAllowed}}
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-labal" for="role">{{formLabels.role}}</label>
+    <select id="role" class="form-select" formControlName="role"
+      [class]="{'is-valid':form['role'].valid,'is-invalid':form['role'].invalid && form['role'].touched}"
+      (blur)="onValueChanged()">
+      <option disabled selected [value]="null">{{formPlaceholder.role}}</option>
+      <option [value]="role" *ngFor="let role of roles">{{role}}</option>
+    </select>
+    <div class="invalid-feedback">{{formErrors.role}}</div>
+    <div class="valid-feedback">{{formSuccess.role}}</div>
+  </div>
+
+  <div class="mb-3">
+    <button type="submit" class="btn btn-dark" [disabled]="userForm.invalid">Сохранить</button>
+  </div>
+</form>
+<!-- <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label class="form-labal" for="name">Имя:</label>
+    <input #name="ngModel" [(ngModel)]="user.name" class="form-control" type="text" id="name" required name="name"
+      minlength="4" maxlength="15">
+    <div *ngIf="formErrors.name" class="alert alert-danger">{{formErrors.name}}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-labal" for="age">Возраст:</label>
+    <input #age="ngModel" [(ngModel)]="user.age" class="form-control" type="number" id="age" name="age" required>
+    <div *ngIf="formErrors.age" class="alert alert-danger">{{formErrors.age}}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-labal" for="role">Роль:</label>
+    <select #role="ngModel" [(ngModel)]="user.role" name="role" id="role" class="form-select" required>
+      <option disabled selected value="">Выберите роль</option>
+      <option [value]="role" *ngFor="let role of roles">{{role}}</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <button type="submit" class="btn btn-dark" [disabled]="userForm.form.invalid">Сохранить</button>
+  </div>
+</form> -->
